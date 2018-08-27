@@ -45,7 +45,8 @@ public class Data {
 	}
 
 	// A static method to sort the input data array according to transaction date
-	public static void sortData(Data[] dataArray) {
+	// We will only deal data from index 0 to index size (exclusive).
+	public static void sortData(Data[] dataArray, int size) {
 		// TODO(Yuan): TO BE IMPLEMENTED LATER
 	}
 }

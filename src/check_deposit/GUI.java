@@ -249,6 +249,7 @@ public class GUI extends JFrame {
 		amount = isDeposit ? amount : -amount;
 		dataArray[dataIndex] = new Data(date, description, amount);
 		dataIndex++;
+		Data.sortData(dataArray, dataIndex);
 		// Resize the data array in case it's already full.
 		resizeDataArray();
 		printDetails();
