@@ -1,5 +1,3 @@
-package check_deposit;
-
 import java.util.Date;
 import java.util.List;
 
