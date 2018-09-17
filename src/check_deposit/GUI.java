@@ -259,6 +259,16 @@ public class GUI extends JFrame {
 	// Please note that this will still guarantee O(1) insertion time.
 	private void resizeDataArray() {
 		// TODO(Yuan): TO BE IMPLEMENTED LATER
+		if(dataIndex < dataArray.length)
+		{
+			return;
+		}
+		Data[] newdataArray = new Data[dataArray.length * 2];
+		for(int i = 0; i < dataArray.length; i++)
+		{
+			newdataArray[i] = dataArray[i];
+		}
+		dataArray = newdataArray;
 	}
 	
 	// Reset the user input fields. dateField does not need to be reset.
