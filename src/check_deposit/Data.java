@@ -51,7 +51,7 @@ public class Data {
 		// TODO(Yuan): TO BE IMPLEMENTED LATER
 		if(amount > 0)
 		{
-			return amount * 0.01;
+			return -amount * 0.01;
 		}
 		else
 		{
