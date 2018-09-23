@@ -13,11 +13,13 @@ public class Data {
 	Date date;
 	String description;
 	double amount;
+	boolean isVip;
 	
-	public Data(Date date, String description, double amount) {
+	public Data(Date date, String description, double amount, boolean isVip) {
 		this.date = date;
 		this.description = description;
 		this.amount = amount;
+		this.isVip = isVip;
 		// TODO(Yuan): TO BE IMPLEMENTED LATER
 	}
 	
@@ -49,14 +51,22 @@ public class Data {
 	// Get the fee in this transaction data.
 	public double getFee() {
 		// TODO(Yuan): TO BE IMPLEMENTED LATER
-		if(amount > 0)
+		if(isVip == false)
 		{
-			return -amount * 0.01;
+			if(amount > 0)
+			{
+				return -amount * 0.01;
+			}
+			else
+			{
+				return amount * 0.03;
+			}
 		}
 		else
 		{
-			return amount * 0.03;
+			return 0;
 		}
+		
 	}
 	
 	// Whether this transaction is deposit or withdraw.

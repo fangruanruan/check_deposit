@@ -32,7 +32,8 @@ public class GUI extends JFrame {
 	private JTextField dateField, descriptionField, amountField, warning;
 	private JTextArea displayArea;
 	private JPanel panel, panelText, panelInput, panelButton;
-	private JButton writeCheckButton, depositButton;
+	private JButton writeCheckButton, depositButton, clearButton;
+	private JCheckBox nofee;
 	private Font fixedFont;
 	
 	// Helper String used to store format display header line
@@ -184,6 +185,8 @@ public class GUI extends JFrame {
 		// Create two buttons for write check and make deposit
 		writeCheckButton = new JButton("Write Check");
 		depositButton = new JButton("Make Deposit");
+		nofee = new JCheckBox("VIP");
+		clearButton = new JButton("Clear All");
 		// This spaceLabel is used for display some spaces between the two buttons
 		JLabel spaceLabel = new JLabel("                 ");
 		
@@ -198,11 +201,21 @@ public class GUI extends JFrame {
 				processTransaction(true);
 			}
 		});
+		clearButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				dataArray = new Data[dataArray.length];
+				dataIndex = 0;
+				
+				printDetails();
+			}
+		});
 		
 		// Add the buttons and internal spaces to the panel.
 		panelButton.add(writeCheckButton);
-		panelButton.add(spaceLabel);
 		panelButton.add(depositButton);
+		panelButton.add(nofee);
+		panelButton.add(spaceLabel);
+		panelButton.add(clearButton);
 		panel.add(panelButton);
 	}
 	
@@ -237,6 +250,10 @@ public class GUI extends JFrame {
 			warning.setText("Invalid vale for Date. Use mm/dd/yyyy");
 			return;
 		}
+		
+		boolean isVip = nofee.isSelected();
+		
+		
 
 		// If code reaches here, all the input is validated, we can reset the input field's text.
 		// Then convert the amount to be negative if it's not deposit.
@@ -244,7 +261,7 @@ public class GUI extends JFrame {
 		// Print the new transaction details on the displayArea.
 		resetInput();
 		amount = isDeposit ? amount : -amount;
-		dataArray[dataIndex] = new Data(date, description, amount);
+		dataArray[dataIndex] = new Data(date, description, amount, isVip);
 		dataIndex++;
 		Data.sortData(dataArray, dataIndex);
 		// Resize the data array in case it's already full.
